@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+/* Where Tailwind looks for class names. */
+@source "../../templates";
+@source "../../apps";
+
+/* Medlink design tokens (direction A, "Ward Board").
+   Every name here becomes a utility: bg-ground, text-ink, border-line, ... */
+@theme {
+  --font-sans: "Schibsted Grotesk", ui-sans-serif, system-ui, sans-serif;
+
+  --color-ground: #e8ecee;      /* page background */
+  --color-panel: #ffffff;       /* cards and tables */
+  --color-mist: #eef2f3;        /* quiet fills, patient chips */
+  --color-ink: #13232c;         /* text and the dark top bar */
+  --color-ink-soft: #52646d;    /* secondary text */
+  --color-line: #dde3e6;        /* thin dividers */
+  --color-line-strong: #c9d2d7; /* input borders */
+
+  --color-scrub: #0b7a66;       /* primary action, "flowing" */
+  --color-scrub-dark: #065244;
+  --color-scrub-light: #3dcfb2;
+  --color-urgent: #d93a2b;      /* emergencies, critical alerts */
+  --color-amber: #f0a81f;       /* waiting too long, insurer owes */
+  --color-amber-soft: #fbe3a8;
+}
+
+@layer base {
+  html {
+    background: var(--color-ground);
+    color: var(--color-ink);
+  }
+  body {
+    font-family: var(--font-sans);
+    /* Equal-width digits so money and vitals line up in columns. */
+    font-variant-numeric: tabular-nums;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-scrub-light);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .panel {
+    @apply bg-panel p-5;
+  }
+  .btn-primary {
+    @apply inline-flex min-h-11 items-center justify-center rounded-[3px] bg-scrub px-4 font-bold text-white hover:bg-scrub-dark;
+  }
+  .btn-quiet {
+    @apply inline-flex min-h-11 items-center justify-center rounded-[3px] border-2 border-line-strong bg-panel px-4 font-semibold hover:bg-mist;
+  }
+}

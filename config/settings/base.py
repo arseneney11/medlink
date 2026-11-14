@@ -24,9 +24,16 @@ DJANGO_APPS = [
 # Medlink apps are added here, one per feature branch (accounts, facilities, patients...).
 LOCAL_APPS = [
     "apps.core",
+    "apps.accounts",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
+
+AUTH_USER_MODEL = "accounts.User"
+
+LOGIN_URL = "accounts:login"
+LOGIN_REDIRECT_URL = "core:home"
+LOGOUT_REDIRECT_URL = "accounts:login"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

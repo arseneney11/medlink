@@ -1,0 +1,29 @@
+{
+  "name": "medlink",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Integrated healthcare management system for Rwanda, developed by DIRECA Company Ltd.",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "dev": "tailwindcss -i ./static/src/app.css -o ./static/dist/app.css --watch",
+    "build": "tailwindcss -i ./static/src/app.css -o ./static/dist/app.css --minify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arseneney11/medlink.git"
+  },
+  "keywords": [],
+  "author": "DIRECA Company Ltd",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/arseneney11/medlink/issues"
+  },
+  "homepage": "https://github.com/arseneney11/medlink#readme",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.5",
+    "tailwindcss": "^4.3.5"
+  }
+}

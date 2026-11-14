@@ -1,12 +1,21 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Medlink</title>
-</head>
-<body>
-  <h1>Medlink is running.</h1>
-  <p>Skeleton ready. The real interface arrives with the app shell.</p>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block body %}
+<main class="mx-auto flex max-w-3xl flex-col gap-6 p-8">
+  <h1 class="text-4xl font-extrabold tracking-tight">Medlink is running.</h1>
+
+  <div class="panel flex flex-col gap-4">
+    <p class="text-ink-soft">If this page has the grey background, the white panel and the green button, the design pipeline works.</p>
+    <div class="flex flex-wrap gap-3">
+      <a href="/health/" class="btn-primary">Check health</a>
+      <a href="/admin/" class="btn-quiet">Open admin</a>
+    </div>
+  </div>
+
+  <div class="flex flex-wrap gap-2 text-sm font-semibold">
+    <span class="bg-scrub px-3 py-1 text-white">Flowing</span>
+    <span class="bg-amber-soft px-3 py-1">Waiting</span>
+    <span class="bg-urgent px-3 py-1 text-white">Urgent</span>
+  </div>
+</main>
+{% endblock %}

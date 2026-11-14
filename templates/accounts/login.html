@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Sign in · Medlink{% endblock %}
+
+{% block body %}
+<div class="flex min-h-screen flex-wrap">
+  <section class="flex min-w-0 flex-1 basis-[480px] flex-col justify-between gap-10 bg-ink p-12 text-ground">
+    <div class="flex items-center gap-2 text-2xl font-extrabold tracking-tight">
+      <span class="size-3.5 rounded-full bg-scrub-light"></span>medlink
+    </div>
+    <div class="flex flex-col gap-7">
+      <div class="grid grid-cols-6 gap-1.5" aria-hidden="true">
+        <span class="h-2 bg-scrub-light"></span>
+        <span class="h-2 bg-scrub-light"></span>
+        <span class="h-2 bg-scrub-light"></span>
+        <span class="h-2 bg-amber"></span>
+        <span class="h-2 bg-ink-soft"></span>
+        <span class="h-2 bg-ink-soft"></span>
+      </div>
+      <h1 class="max-w-[12ch] text-5xl leading-none font-extrabold tracking-tighter">One patient. One visit. One record.</h1>
+      <p class="max-w-[40ch] text-lg text-line-strong">From reception to discharge, every service lands on the same visit and the same invoice.</p>
+    </div>
+    <p class="text-sm text-line-strong">Developed by DIRECA Company Ltd</p>
+  </section>
+
+  <section class="flex min-w-0 flex-1 basis-[420px] items-center justify-center p-12">
+    <form method="post" class="flex w-full max-w-sm flex-col gap-5">
+      {% csrf_token %}
+      <input type="hidden" name="next" value="{{ next }}">
+      <h2 class="text-3xl font-extrabold tracking-tight">Sign in</h2>
+
+      {% if form.errors %}
+        <p role="alert" class="bg-urgent px-3 py-2 text-sm font-semibold text-white">Wrong username or password. Check both and try again.</p>
+      {% endif %}
+
+      <label class="flex flex-col gap-1.5 text-sm font-semibold">Username
+        <input type="text" name="username" autocomplete="username" autofocus required
+               value="{{ form.username.value|default:'' }}" class="field-input font-normal">
+      </label>
+      <label class="flex flex-col gap-1.5 text-sm font-semibold">Password
+        <input type="password" name="password" autocomplete="current-password" required
+               class="field-input font-normal">
+      </label>
+      <button type="submit" class="btn-primary cursor-pointer">Sign in</button>
+      <p class="text-sm text-ink-soft">Each person signs in with their own account. Shared accounts are not allowed.</p>
+    </form>
+  </section>
+</div>
+{% endblock %}

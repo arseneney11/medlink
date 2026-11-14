@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# Environment and secrets
+.env
+
+# Django
+db.sqlite3
+/staticfiles/
+/media/
+
+# Node / Tailwind
+node_modules/
+/static/dist/
+
+# Editors and OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Docker data
+/pgdata/

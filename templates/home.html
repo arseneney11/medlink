@@ -5,7 +5,25 @@
   <h1 class="text-4xl font-extrabold tracking-tight">Medlink is running.</h1>
 
   <div class="panel flex flex-col gap-4">
-    <p class="text-ink-soft">Signed in as <strong class="text-ink">{{ request.user }}</strong>.</p>
+    <p class="text-ink-soft">Signed in as <strong class="text-ink">{{ request.user }}</strong>{% if request.facility %} at <strong class="text-ink">{{ request.facility.name }}</strong>{% endif %}.</p>
+
+    {% if not request.user_facilities %}
+      <p role="alert" class="bg-amber-soft px-3 py-2 text-sm font-semibold">Your account is not linked to a facility yet. Ask an administrator to add you.</p>
+    {% elif request.user_facilities|length > 1 %}
+      {% if not request.facility %}
+        <p role="alert" class="bg-amber-soft px-3 py-2 text-sm font-semibold">Choose the facility you are working in.</p>
+      {% endif %}
+      <form method="post" action="{% url 'facilities:switch' %}" class="flex flex-wrap gap-3">
+        {% csrf_token %}
+        <select name="facility" aria-label="Facility" class="field-input max-w-xs">
+          {% for f in request.user_facilities %}
+            <option value="{{ f.pk }}" {% if f == request.facility %}selected{% endif %}>{{ f.name }}</option>
+          {% endfor %}
+        </select>
+        <button type="submit" class="btn-quiet cursor-pointer">Switch facility</button>
+      </form>
+    {% endif %}
+
     <div class="flex flex-wrap gap-3">
       <a href="/health/" class="btn-primary">Check health</a>
       <a href="/admin/" class="btn-quiet">Open admin</a>

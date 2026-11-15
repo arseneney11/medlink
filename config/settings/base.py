@@ -26,6 +26,7 @@ LOCAL_APPS = [
     "apps.core",
     "apps.accounts",
     "apps.facilities",
+    "apps.access",
 ]
 
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
@@ -44,6 +45,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "apps.core.middleware.CurrentUserMiddleware",
     "apps.facilities.middleware.CurrentFacilityMiddleware",
+    "apps.access.middleware.PermissionsMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]

@@ -6,6 +6,11 @@
 
   <div class="panel flex flex-col gap-4">
     <p class="text-ink-soft">Signed in as <strong class="text-ink">{{ request.user }}</strong>{% if request.facility %} at <strong class="text-ink">{{ request.facility.name }}</strong>{% endif %}.</p>
+    {% if request.facility %}
+      <p class="text-ink-soft">Your roles here:
+        {% for name in request.permissions.role_names %}<strong class="text-ink">{{ name }}</strong>{% if not forloop.last %}, {% endif %}{% empty %}<em>none yet</em>{% endfor %}.
+      </p>
+    {% endif %}
 
     {% if not request.user_facilities %}
       <p role="alert" class="bg-amber-soft px-3 py-2 text-sm font-semibold">Your account is not linked to a facility yet. Ask an administrator to add you.</p>
